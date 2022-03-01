@@ -38,6 +38,11 @@
 
       <div class="navbar__append">
         <div class="append__language">
+          <img
+            src="./images/globe.png"
+            alt=""
+          >
+
           Language
         </div>
 

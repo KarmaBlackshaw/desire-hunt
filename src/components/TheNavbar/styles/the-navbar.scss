@@ -39,12 +39,17 @@
         text-align: center;
         cursor: pointer;
         font-size: 0.95rem;
+        transition: color 0.2s ease;
 
         &:not(:last-child) {
           margin-right: 30px;
         }
 
         &:hover {
+          color: #ffc344;
+        }
+
+        .router-link-active {
           color: #ffc344;
         }
       }
@@ -55,15 +60,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 0.95rem;
 
     .append__language {
       margin-right: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      img {
+        height: 20px;
+        margin-right: 5px;
+      }
     }
 
     .append__contact {
       border: 1px solid #d2d3d5;
       padding: 8px 20px;
       border-radius: 3rem;
+      transition: 200ms ease;
+      transition-property: background-color, color, border-color;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ffc344;
+        border-color: #f7b72d;
+        color: black;
+      }
     }
   }
 }
