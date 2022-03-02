@@ -22,8 +22,12 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+.app {
   height: 100%;
   min-height: 100vh;
+
+  .app__body {
+    height: 100%;
+  }
 }
 </style>
