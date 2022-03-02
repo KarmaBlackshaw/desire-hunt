@@ -9,16 +9,25 @@
 </template>
 
 <script>
+import { provide } from 'vue'
+
 import TheNavbar from '@/components/TheNavbar/TheNavbar'
 
+import useBreakpoint from './utils/useBreakpoint'
+
 export default {
+  name: 'App',
+
   components: {
     TheNavbar
   },
-  setup () {
 
+  setup () {
+    const { breakpoint } = useBreakpoint()
+    provide('breakpoint', breakpoint)
   }
 }
+
 </script>
 
 <style lang="scss">

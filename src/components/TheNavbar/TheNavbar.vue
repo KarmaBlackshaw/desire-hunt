@@ -1,6 +1,24 @@
 <template>
   <nav class="navbar-container">
     <div class="navbar">
+      <div
+        v-if="breakpoint.isBelow(971)"
+        class="navbar__hamburger"
+      >
+        <button
+          class="btn-menu"
+          :class="{
+            'menu-open': isMenuOpen
+          }"
+          type="button"
+          @click="isMenuOpen = !isMenuOpen"
+        >
+          <i
+            class="btn-menu__bars"
+            aria-hidden="true"
+          ></i>
+        </button>
+      </div>
       <div class="navbar__title">
         <img
           src="./images/logo.png"
@@ -11,7 +29,10 @@
         DesireHunt
       </div>
 
-      <div class="navbar__link">
+      <div
+        v-if="breakpoint.isAbove(971)"
+        class="navbar__link"
+      >
         <ul>
           <li class="link__item">
             <router-link to="/">
@@ -36,7 +57,10 @@
         </ul>
       </div>
 
-      <div class="navbar__append">
+      <div
+        v-if="breakpoint.smAndAbove"
+        class="navbar__append"
+      >
         <div class="append__language">
           <img
             src="./images/globe.png"
@@ -55,8 +79,20 @@
 </template>
 
 <script>
+import { inject, ref } from 'vue'
+
 export default {
-  name: 'TheNavbar'
+  name: 'TheNavbar',
+
+  setup () {
+    const breakpoint = inject('breakpoint')
+    const isMenuOpen = ref(false)
+
+    return {
+      breakpoint,
+      isMenuOpen
+    }
+  }
 }
 </script>
 

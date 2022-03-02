@@ -51,17 +51,18 @@ export default () => {
       get: () => ['xs', 'sm', 'md', 'lg', 'xl'].find(curr => breakpoints[curr])
     }))
 
-    Object.defineProperty(breakpoints, 'isBelow', define({ value: size => _isMax(size) }))
-    Object.defineProperty(breakpoints, 'isAbove', define({ value: size => _isBetween(size) }))
-    Object.defineProperty(breakpoints, 'isBetween', define({ value: (minSize, maxSize) => _isBetween(minSize, maxSize) }))
+    Object.defineProperty(breakpoints, 'isBelow', { value: size => _isMax(size) })
+    Object.defineProperty(breakpoints, 'isAbove', { value: size => _isMin(size) })
+    Object.defineProperty(breakpoints, 'isBetween', { value: (minSize, maxSize) => _isBetween(minSize, maxSize) })
+    Object.defineProperty(breakpoints, 'width', { get: () => state.width })
 
     return breakpoints
   })
 
   onMounted(() => {
-    state.width = window.innerWidth
+    state.width = Math.min(window.innerWidth, screen.width)
     window.onresize = () => {
-      state.width = window.innerWidth
+      state.width = Math.min(window.innerWidth, screen.width)
     }
   })
 
