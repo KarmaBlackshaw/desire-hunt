@@ -13,13 +13,16 @@
   height: 64px;
   position: relative;
 
-  @include xs {
+  @include isBelow(971px) {
     justify-content: center;
   }
 
   .navbar__hamburger {
     @include no-select;
-    flex-grow: 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     margin-right: 10px;
 
     .btn-menu {
@@ -92,7 +95,6 @@
   }
 
   .navbar__title {
-    flex: 1;
     color: #f0f1f1;
     margin-right: min(50px, 10%);
     font-size: 1.2rem;
@@ -107,7 +109,7 @@
     }
   }
 
-  .navbar__link {
+  .navbar__links {
     flex: 1;
 
     ul {
@@ -167,6 +169,81 @@
         background-color: #ffc344;
         border-color: #f7b72d;
         color: black;
+      }
+    }
+  }
+
+  .navbar__aside {
+    $width: min(40vw, 300px);
+
+    position: fixed;
+    max-width: $width;
+    min-width: 230px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    transform: translateX(-300px);
+    transition: transform 500ms ease;
+
+    &.sidebar--open {
+      transform: translateX(0);
+    }
+
+    .sidebar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding-top: 20px;
+      transition: 100ms ease;
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+        rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+
+      .sidebar__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(31, 30, 30, 0.98);
+        border-color: rgba(85, 84, 84, 0.8);
+        filter: blur(1px);
+        z-index: -1;
+      }
+
+      .sidebar__title {
+        text-align: center;
+
+        .sidebar__logo {
+          margin-left: auto;
+          margin-right: auto;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+      }
+
+      .sidebar__links {
+        .link__item {
+          padding: 15px 20px;
+          cursor: pointer;
+          transition: 100ms ease;
+
+          &.link__item--active {
+            background-color: #ffc344;
+            color: black;
+          }
+
+          &:hover {
+            background-color: #ffc344;
+            color: black;
+          }
+
+          a {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+          }
+        }
       }
     }
   }

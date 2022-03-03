@@ -6,11 +6,12 @@
         class="navbar__hamburger"
       >
         <button
+          ref="target"
           class="btn-menu"
+          type="button"
           :class="{
             'menu-open': isMenuOpen
           }"
-          type="button"
           @click="isMenuOpen = !isMenuOpen"
         >
           <i
@@ -19,6 +20,7 @@
           ></i>
         </button>
       </div>
+
       <div class="navbar__title">
         <img
           src="./images/logo.png"
@@ -29,36 +31,26 @@
         DesireHunt
       </div>
 
+      <!-- PC Navigation -->
       <div
         v-if="breakpoint.isAbove(971)"
-        class="navbar__link"
+        class="navbar__links"
       >
         <ul>
-          <li class="link__item">
-            <router-link to="/">
-              Home
-            </router-link>
-          </li>
-          <li class="link__item">
-            <router-link to="/services">
-              Services
-            </router-link>
-          </li>
-          <li class="link__item">
-            <router-link to="/about-us">
-              About Us
-            </router-link>
-          </li>
-          <li class="link__item">
-            <router-link to="/blog">
-              Blog
+          <li
+            v-for="(nav, navKey) in navigations"
+            :key="navKey"
+            class="link__item"
+          >
+            <router-link :to="nav.to">
+              {{ nav.text }}
             </router-link>
           </li>
         </ul>
       </div>
 
       <div
-        v-if="breakpoint.smAndAbove"
+        v-if="breakpoint.isAbove(971)"
         class="navbar__append"
       >
         <div class="append__language">
@@ -74,12 +66,57 @@
           Contact
         </div>
       </div>
+
+      <!-- Mobile Navigation -->
+      <div
+        v-if="breakpoint.isBelow(971)"
+        ref="sidebar"
+        class="navbar__aside"
+        :class="{
+          'sidebar--open': isMenuOpen
+        }"
+      >
+        <div class="sidebar">
+          <div class="sidebar__background"></div>
+
+          <div class="sidebar__title">
+            <img
+              src="./images/logo.png"
+              alt="Logo"
+              class="sidebar__logo"
+            >
+          </div>
+
+          <div class="sidebar__links">
+            <ul>
+              <router-link
+                v-for="(nav, navKey) in navigations"
+                :key="navKey"
+                v-slot="{navigate, isExactActive}"
+                custom
+                :to="nav.to"
+              >
+                <li
+                  class="link__item"
+                  :class="{
+                    'link__item--active': isExactActive
+                  }"
+                  @click="navigate"
+                >
+                  {{ nav.text }}
+                </li>
+              </router-link>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import { inject, ref, reactive } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
 export default {
   name: 'TheNavbar',
@@ -88,8 +125,26 @@ export default {
     const breakpoint = inject('breakpoint')
     const isMenuOpen = ref(false)
 
+    const navigations = reactive([
+      { text: 'Home', to: '/' },
+      { text: 'Services', to: '/services' },
+      { text: 'About Us', to: '/about-us' },
+      { text: 'Blog', to: '/blog' }
+    ])
+
+    const sidebar = ref(null)
+    onClickOutside(sidebar, () => {
+      isMenuOpen.value = false
+    })
+
     return {
+      // refs
+      sidebar,
+
+      navigations,
+
       breakpoint,
+
       isMenuOpen
     }
   }
