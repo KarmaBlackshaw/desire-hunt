@@ -36,7 +36,10 @@
           </div>
         </div>
 
-        <div class="hero__body--item"></div>
+        <div
+          v-if="!breakpoint.smAndBelow"
+          class="hero__body--item"
+        ></div>
       </div>
 
       <div class="hero__footer">
@@ -66,9 +69,15 @@
 </template>
 
 <script>
+import { inject } from 'vue'
+
 export default {
   name: 'Home',
-  components: {
+
+  setup () {
+    return {
+      breakpoint: inject('breakpoint')
+    }
   }
 }
 </script>

@@ -122,7 +122,6 @@ export default {
   name: 'TheNavbar',
 
   setup () {
-    const breakpoint = inject('breakpoint')
     const isMenuOpen = ref(false)
 
     const navigations = reactive([
@@ -143,7 +142,7 @@ export default {
 
       navigations,
 
-      breakpoint,
+      breakpoint: inject('breakpoint'),
 
       isMenuOpen
     }

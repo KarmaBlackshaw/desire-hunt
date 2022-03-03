@@ -45,10 +45,19 @@
       flex-direction: column;
       justify-content: center;
 
+      @include smAndBelow {
+        text-align: center;
+      }
+
       h1 {
         font-size: 70px;
         line-height: 70px;
         font-weight: bold;
+
+        @include smAndBelow {
+          font-size: 60px;
+          line-height: 60px;
+        }
       }
 
       h3 {
@@ -56,11 +65,21 @@
         line-height: 40px;
         font-weight: bold;
         margin-bottom: 20px;
+
+        @include smAndBelow {
+          font-size: 30px;
+          line-height: 30px;
+        }
       }
 
       p {
         margin-bottom: 20px;
         font-size: 20px;
+
+        @include smAndBelow {
+          font-size: 15px;
+          line-height: 15px;
+        }
 
         a {
           color: #ffc344;
@@ -69,10 +88,16 @@
 
       .hero__search {
         width: 100%;
+        max-width: 400px;
         border: 1px solid white;
         display: flex;
         border-radius: 40px;
         padding: 5px 5px 5px 20px;
+
+        @include smAndBelow {
+          margin-right: auto;
+          margin-left: auto;
+        }
 
         input {
           border: none;
@@ -111,6 +136,10 @@
     top: calc(100% - $height / 2);
     z-index: 9;
     transform: translateX(-50%);
+
+    @include smAndBelow {
+      width: 95%;
+    }
   }
 
   .instructions {
@@ -118,6 +147,10 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
+
+    @include smAndBelow {
+      padding: 5px;
+    }
 
     .instructions__background {
       position: absolute;
@@ -136,6 +169,10 @@
       position: relative;
       flex: 1 1 0;
       margin: 15px;
+
+      @include smAndBelow {
+        margin: 10px;
+      }
 
       .instructions__img {
         display: flex;
