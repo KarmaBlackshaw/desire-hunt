@@ -24,6 +24,7 @@ export default {
 
   setup () {
     const { breakpoint } = useBreakpoint()
+
     provide('breakpoint', breakpoint)
   }
 }

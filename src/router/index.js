@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '../views/home/Home.vue'
+import Home from '../views/Home'
 
-const lazyLoad = path => () => import(/* webpackChunkName: "about" */ `@/views/${path}.vue`)
+const lazyLoad = path => () => import(/* webpackChunkName: "about" */ `@/views/${path}`)
+
 const routes = [
   {
     path: '/',
@@ -10,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/about-us',
+    path: '/about',
     name: 'AboutUs',
     component: lazyLoad('AboutUs')
   },

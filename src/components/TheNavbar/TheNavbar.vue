@@ -22,13 +22,13 @@
       </div>
 
       <div class="navbar__title">
-        <img
-          src="./images/logo.png"
+        <!-- <img
+          src="./images/camera-logo.png"
           alt="Logo"
           class="navbar__logo"
-        >
+        > -->
 
-        DesireHunt
+        Anade Photography
       </div>
 
       <!-- PC Navigation -->
@@ -53,15 +53,6 @@
         v-if="breakpoint.isAbove(971)"
         class="navbar__append"
       >
-        <div class="append__language">
-          <img
-            src="./images/globe.png"
-            alt=""
-          >
-
-          Language
-        </div>
-
         <div class="append__contact">
           Contact
         </div>
@@ -127,11 +118,11 @@ export default {
     const navigations = reactive([
       { text: 'Home', to: '/' },
       { text: 'Services', to: '/services' },
-      { text: 'About Us', to: '/about-us' },
+      { text: 'About', to: '/about' },
       { text: 'Blog', to: '/blog' }
     ])
 
-    const sidebar = ref(null)
+    const sidebar = ref()
     onClickOutside(sidebar, () => {
       isMenuOpen.value = false
     })
