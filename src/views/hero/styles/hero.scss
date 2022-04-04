@@ -47,9 +47,14 @@
         line-height: 70px;
         font-weight: bold;
 
-        @include smAndBelow {
+        @include sm {
           font-size: 60px;
           line-height: 60px;
+        }
+
+        @include xs {
+          font-size: 40px;
+          line-height: 50px;
         }
       }
 
@@ -125,19 +130,8 @@
     bottom: 10px;
     padding-right: 10px;
     width: 100%;
-    z-index: 9;
+    z-index: 2;
     text-align: right;
     color: rgba(255, 255, 255, 0.6);
-    // $height: 150px;
-
-    // position: absolute;
-    // width: 70%;
-    // left: 50%;
-    // top: calc(100% - $height / 2);
-    // transform: translateX(-50%);
-
-    // @include smAndBelow {
-    //   width: 95%;
-    // }
   }
 }
